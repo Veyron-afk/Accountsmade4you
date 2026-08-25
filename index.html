@@ -66,7 +66,7 @@
     .eyebrow{color:#9d8cff;text-transform:uppercase;letter-spacing:2px;font-size:11px;font-weight:900}
     h2{font-size:36px;letter-spacing:-1.8px;margin:8px 0 0}
     .section-head p{color:var(--muted);max-width:450px;line-height:1.6}
-    .rank-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+    .rank-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
     .rank{
       background:linear-gradient(180deg,#151822,#0f1117);
       border:1px solid var(--line);border-radius:16px;padding:20px 12px;
@@ -98,6 +98,7 @@
     .visual.plat{background:linear-gradient(135deg,#171b2a,#2b2852)}
     .visual.dia{background:linear-gradient(135deg,#201b30,#4b2148)}
     .visual.eme{background:linear-gradient(135deg,#13251f,#17483b)}
+    .visual.champ{background:linear-gradient(135deg,#2a2013,#5a4318)}
     .badge{background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.12);padding:6px 9px;border-radius:8px;font-size:11px;font-weight:800}
     .rank-big{font-size:44px;font-weight:900;align-self:flex-end;letter-spacing:-2px}
     .card-body{padding:17px}
@@ -206,7 +207,9 @@
       {name:"Silver", icon:"◆", key:"Silver"},
       {name:"Gold", icon:"◆", key:"Gold"},
       {name:"Platinum", icon:"◆", key:"Platinum"},
-      {name:"Diamond", icon:"◆", key:"Diamond"}
+      {name:"Emerald", icon:"◆", key:"Emerald"},
+      {name:"Diamond", icon:"◆", key:"Diamond"},
+      {name:"Champ", icon:"◆", key:"Champ"}
     ];
 
     const accounts = [
@@ -217,9 +220,12 @@
       {id:"A-4087",rank:"Gold",price:39.99,level:126,platform:"Console",detail:"Large operator pool",cls:""},
       {id:"A-5192",rank:"Platinum",price:64.99,level:151,platform:"PC",detail:"High-rank profile",cls:"plat"},
       {id:"A-6204",rank:"Platinum",price:74.99,level:168,platform:"PC",detail:"Premium cosmetics",cls:"plat"},
+      {id:"A-9017",rank:"Emerald",price:84.99,level:178,platform:"PC",detail:"Ranked collection",cls:"eme"},
+      {id:"A-9203",rank:"Emerald",price:94.99,level:186,platform:"Console",detail:"Elite operator pool",cls:"eme"},
       {id:"A-7110",rank:"Diamond",price:109.99,level:194,platform:"PC",detail:"End-game profile",cls:"dia"},
       {id:"A-8046",rank:"Diamond",price:129.99,level:213,platform:"PC",detail:"Rare cosmetics",cls:"dia"},
-      {id:"A-9017",rank:"Emerald",price:49.99,level:137,platform:"PC",detail:"Ranked collection",cls:"eme"}
+      {id:"A-9501",rank:"Champ",price:149.99,level:230,platform:"PC",detail:"Top-tier profile",cls:"champ"},
+      {id:"A-9622",rank:"Champ",price:169.99,level:248,platform:"PC",detail:"Ultra-rare cosmetics",cls:"champ"}
     ];
 
     let selected = "All";
