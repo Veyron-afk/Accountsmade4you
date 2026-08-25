@@ -111,6 +111,8 @@
       width:100%;padding:11px;border:1px solid #3c326e;background:#1b1634;
       color:#c9c0ff;border-radius:10px;font-weight:800;cursor:pointer
     }
+    .buy:disabled{opacity:.45;cursor:not-allowed}
+    .oos{color:var(--danger);font-size:11px;font-weight:800;margin-top:4px;text-align:right}
     .empty{grid-column:1/-1;padding:45px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
     .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
     .trust-card{background:#101219;border:1px solid var(--line);border-radius:16px;padding:23px}
@@ -213,19 +215,19 @@
     ];
 
     const accounts = [
-      {id:"A-1042",rank:"Copper",price:8.99,level:42,platform:"PC",detail:"Starter collection",cls:""},
-      {id:"A-1188",rank:"Bronze",price:14.99,level:67,platform:"PC",detail:"Multiple operators",cls:""},
-      {id:"A-2051",rank:"Silver",price:21.99,level:91,platform:"PC",detail:"Cosmetic bundle",cls:""},
-      {id:"A-3314",rank:"Gold",price:34.99,level:112,platform:"PC",detail:"Competitive ready",cls:""},
-      {id:"A-4087",rank:"Gold",price:39.99,level:126,platform:"Console",detail:"Large operator pool",cls:""},
-      {id:"A-5192",rank:"Platinum",price:64.99,level:151,platform:"PC",detail:"High-rank profile",cls:"plat"},
-      {id:"A-6204",rank:"Platinum",price:74.99,level:168,platform:"PC",detail:"Premium cosmetics",cls:"plat"},
-      {id:"A-9017",rank:"Emerald",price:84.99,level:178,platform:"PC",detail:"Ranked collection",cls:"eme"},
-      {id:"A-9203",rank:"Emerald",price:94.99,level:186,platform:"Console",detail:"Elite operator pool",cls:"eme"},
-      {id:"A-7110",rank:"Diamond",price:109.99,level:194,platform:"PC",detail:"End-game profile",cls:"dia"},
-      {id:"A-8046",rank:"Diamond",price:129.99,level:213,platform:"PC",detail:"Rare cosmetics",cls:"dia"},
-      {id:"A-9501",rank:"Champ",price:149.99,level:230,platform:"PC",detail:"Top-tier profile",cls:"champ"},
-      {id:"A-9622",rank:"Champ",price:169.99,level:248,platform:"PC",detail:"Ultra-rare cosmetics",cls:"champ"}
+      {id:"A-1042",rank:"Copper",price:6,level:42,platform:"PC",detail:"Starter collection",cls:""},
+      {id:"A-1188",rank:"Bronze",price:10,level:67,platform:"PC",detail:"Multiple operators",cls:""},
+      {id:"A-2051",rank:"Silver",price:15,level:91,platform:"PC",detail:"Cosmetic bundle",cls:""},
+      {id:"A-3314",rank:"Gold",price:25,level:112,platform:"PC",detail:"Competitive ready",cls:""},
+      {id:"A-4087",rank:"Gold",price:25,level:126,platform:"Console",detail:"Large operator pool",cls:""},
+      {id:"A-5192",rank:"Platinum",price:40,level:151,platform:"PC",detail:"High-rank profile",cls:"plat"},
+      {id:"A-6204",rank:"Platinum",price:40,level:168,platform:"PC",detail:"Premium cosmetics",cls:"plat"},
+      {id:"A-9017",rank:"Emerald",price:65,level:178,platform:"PC",detail:"Ranked collection",cls:"eme"},
+      {id:"A-9203",rank:"Emerald",price:65,level:186,platform:"Console",detail:"Elite operator pool",cls:"eme"},
+      {id:"A-7110",rank:"Diamond",price:90,level:194,platform:"PC",detail:"End-game profile",cls:"dia"},
+      {id:"A-8046",rank:"Diamond",price:90,level:213,platform:"PC",detail:"Rare cosmetics",cls:"dia"},
+      {id:"A-9501",rank:"Champ",price:130,level:230,platform:"PC",detail:"Top-tier profile",cls:"champ",outOfStock:true},
+      {id:"A-9622",rank:"Champ",price:130,level:248,platform:"PC",detail:"Ultra-rare cosmetics",cls:"champ",outOfStock:true}
     ];
 
     let selected = "All";
@@ -269,14 +271,17 @@
           <div class="card-body">
             <div class="card-top">
               <div class="card-title">Account ${a.id}</div>
-              <div class="price">£${a.price.toFixed(2)}</div>
+              <div>
+                <div class="price">£${a.price.toFixed(2)}</div>
+                ${a.outOfStock ? '<div class="oos">Out of stock</div>' : ''}
+              </div>
             </div>
             <div class="meta">
               <span class="tag">Level ${a.level}</span>
               <span class="tag">${a.detail}</span>
               <span class="tag">${a.platform}</span>
             </div>
-            <button class="buy" onclick="alert('Demo listing — connect this button to your own product/listing flow.')">View account</button>
+            <button class="buy" ${a.outOfStock ? 'disabled' : ''} onclick="${a.outOfStock ? '' : "alert('Demo listing — connect this button to your own product/listing flow.')"}">${a.outOfStock ? 'Out of stock' : 'View account'}</button>
           </div>
         </article>
       `).join("") : `<div class="empty">No demo listings for this rank yet.</div>`;
